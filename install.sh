@@ -5,7 +5,7 @@
 set -euo pipefail
 
 MODULE=intentiq-identity
-MIN_VERSION=4.5.0
+MIN_VERSION=4.0.0
 
 die() { echo "error: $*" >&2; exit 1; }
 
