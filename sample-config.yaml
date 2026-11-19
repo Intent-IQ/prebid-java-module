@@ -18,6 +18,8 @@ hooks:
       api-endpoint: https://be-api-s2s-gdpr.intentiq.com/profiles_engine/ProfilesEngineServlet
       reports-endpoint: https://reports-s2s-gdpr.intentiq.com/profiles_engine/ProfilesEngineServlet
       partner-id: "<partner id>"   # provided by IntentIQ
+      # only if your bid requests send the partner in ext.intentiq.partnerId:
+      # allowed-partner-ids: ["<partner id>", "<other partner id>"]
       timeout: 1000                # slower calls finish in the background and fill the cache
       cache:
         enabled: true
