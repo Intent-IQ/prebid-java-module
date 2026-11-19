@@ -5,7 +5,7 @@ Adds IntentIQ ids to `user.eids` of every auction, and reports the winning bids 
 ## Install (Prebid Server Java 4.0 or later)
 
 ```bash
-git clone --depth 1 -b v1.1.0 https://github.com/Intent-IQ/prebid-java-module.git iiq
+git clone --depth 1 -b v1.1.1 https://github.com/Intent-IQ/prebid-java-module.git iiq
 iiq/install.sh <your-pbs-repo>
 cd <your-pbs-repo> && mvn clean package --file extra/pom.xml   # builds target/prebid-server-bundle.jar
 ```

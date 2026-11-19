@@ -21,7 +21,7 @@ hooks:
       timeout: 1000                # slower calls finish in the background and fill the cache
       cache:
         enabled: true
-        provider: redis            # Redis or Valkey; aerospike also supported, see intentiq-identity/README.md
+        provider: redis
       redis:
         host: <host>
         port: 6379
