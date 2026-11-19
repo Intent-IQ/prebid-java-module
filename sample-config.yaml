@@ -5,6 +5,9 @@ hooks:
   # the auction waits up to 200 ms for IntentIQ
   host-execution-plan: >
     {"endpoints": {"/openrtb2/auction": {"stages": {
+      "raw-auction-request": {"groups": [{"timeout": 20, "hook-sequence": [
+        {"module-code": "intentiq-identity",
+         "hook-impl-code": "intentiq-identity-raw-auction-request-hook"}]}]},
       "processed-auction-request": {"groups": [{"timeout": 200, "hook-sequence": [
         {"module-code": "intentiq-identity",
          "hook-impl-code": "intentiq-identity-processed-auction-request-hook"}]}]},
