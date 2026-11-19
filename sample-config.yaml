@@ -1,0 +1,32 @@
+# IntentIQ Identity module: the parts to add to your Prebid Server config.
+hooks:
+  intentiq-identity:
+    enabled: true
+  # the auction waits up to 200 ms for IntentIQ
+  host-execution-plan: >
+    {"endpoints": {"/openrtb2/auction": {"stages": {
+      "processed-auction-request": {"groups": [{"timeout": 200, "hook-sequence": [
+        {"module-code": "intentiq-identity",
+         "hook-impl-code": "intentiq-identity-processed-auction-request-hook"}]}]},
+      "auction-response": {"groups": [{"timeout": 50, "hook-sequence": [
+        {"module-code": "intentiq-identity",
+         "hook-impl-code": "intentiq-identity-auction-response-hook"}]}]}
+    }}}}
+  modules:
+    intentiq-identity:
+      # EU endpoints; US: be-api-s2s / reports-s2s, APAC: be-api-s2s-apac
+      api-endpoint: https://be-api-s2s-gdpr.intentiq.com/profiles_engine/ProfilesEngineServlet
+      reports-endpoint: https://reports-s2s-gdpr.intentiq.com/profiles_engine/ProfilesEngineServlet
+      partner-id: "<partner id>"   # provided by IntentIQ
+      timeout: 1000                # slower calls finish in the background and fill the cache
+      cache:
+        enabled: true
+        provider: redis
+      redis:
+        host: <host>
+        port: 6379
+        password: <password>       # if your Redis has one
+        ssl: false                 # true for TLS (e.g. ElastiCache in-transit encryption)
+      metrics-push:                # given by IntentIQ
+        url: <metrics URL>
+        token: ${IIQ_METRICS_TOKEN}
