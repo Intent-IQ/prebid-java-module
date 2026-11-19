@@ -21,14 +21,12 @@ hooks:
       timeout: 1000                # slower calls finish in the background and fill the cache
       cache:
         enabled: true
-        provider: aerospike        # or redis (Redis / Valkey), see intentiq-identity/README.md
-      aerospike:
+        provider: redis            # Redis or Valkey; aerospike also supported, see intentiq-identity/README.md
+      redis:
         host: <host>
-        port: 3000
-        namespace: <namespace>     # needs nsup-period > 0
-        set: iiq
-
-metrics:
-  prometheus:                      # if already enabled, keep yours
-    enabled: true
-    port: 8081
+        port: 6379
+        password: <password>       # if your Redis has one
+        ssl: false                 # true for TLS (e.g. ElastiCache in-transit encryption)
+      metrics-push:                # given by IntentIQ
+        url: <metrics URL>
+        token: ${IIQ_METRICS_TOKEN}
