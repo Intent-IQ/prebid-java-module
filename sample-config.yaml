@@ -5,6 +5,9 @@ hooks:
   # the auction waits up to 200 ms for IntentIQ
   host-execution-plan: >
     {"endpoints": {"/openrtb2/auction": {"stages": {
+      "entrypoint": {"groups": [{"timeout": 20, "hook-sequence": [
+        {"module-code": "intentiq-identity",
+         "hook-impl-code": "intentiq-identity-entrypoint-hook"}]}]},
       "raw-auction-request": {"groups": [{"timeout": 20, "hook-sequence": [
         {"module-code": "intentiq-identity",
          "hook-impl-code": "intentiq-identity-raw-auction-request-hook"}]}]},
@@ -21,7 +24,7 @@ hooks:
       api-endpoint: https://be-api-s2s-gdpr.intentiq.com/profiles_engine/ProfilesEngineServlet
       reports-endpoint: https://reports-s2s-gdpr.intentiq.com/profiles_engine/ProfilesEngineServlet
       partner-id: "<partner id>"   # provided by IntentIQ
-      # only if your bid requests send the partner in ext.intentiq.partnerId:
+      # only if your bid requests send the partner id (ext.prebid.intentiq.partnerId, e.g. Prebid.js s2sConfig.extPrebid):
       # allowed-partner-ids: ["<partner id>", "<other partner id>"]
       timeout: 1000                # slower calls finish in the background and fill the cache
       cache:
